@@ -1,0 +1,38 @@
+import { defineConfig, devices } from '@playwright/test';
+defineConfig — funcție care creează configurația Playwright.
+
+devices — conține setări predefinite pentru browsere și telefoane (Chrome Desktop, iPhone 12 etc.).
+
+
+Exportul configurației
+ts
+export default defineConfig({
+Playwright citește tot ce este în acest obiect.
+
+
+6. forbidOnly
+ts
+forbidOnly: !!process.env.CI,
+Dacă rulezi pe CI (GitHub Actions), Playwright va da eroare dacă ai test.only în cod.
+Protejează pipeline-ul.
+
+
+7. retries
+ts
+retries: process.env.CI ? 2 : 0,
+Pe CI → încearcă testele de 2 ori dacă eșuează.
+Local → 0 retry.
+
+
+
+workers: process.env.CI ? 1 : undefined,    what means workers
+
+
+use: {
+  // baseURL: 'http://localhost:3000',
+  trace: 'on-first-retry',
+},
+
+
+
+ce diferenta este intre chrome si chromium ?
